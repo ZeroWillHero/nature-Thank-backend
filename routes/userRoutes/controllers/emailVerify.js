@@ -11,6 +11,7 @@ const emailVerify = async (req, res) => {
 
     try {
         decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        console.log("decodedToken is : ",decodedToken);
     } catch (error) {
         return res.status(400).json({
             message: 'Invalid token'
@@ -18,10 +19,11 @@ const emailVerify = async (req, res) => {
     }
 
     const user = await User.findOne({ _id: decodedToken.id });
+    console.log("user is : ",user);
 
     if (!user) {
         return res.status(400).json({
-            message: 'Invalid token'
+            message: 'User not found'
         });
     }
 
@@ -36,6 +38,5 @@ const emailVerify = async (req, res) => {
     });
 };
 
-module.exports = { emailVerify };
 
 module.exports = emailVerify;
