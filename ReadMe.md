@@ -5,6 +5,14 @@ Nature thank is a project that with following things
 
 #### packages 
 ![bcrypt](https://img.shields.io/npm/v/bcrypt?label=bcrypt&color=blue)
+![dotenv](https://img.shields.io/npm/v/dotenv?label=dotenv&color=blue)
+![express](https://img.shields.io/npm/v/express?label=express&color=blue)
+![jsonwebtoken](https://img.shields.io/npm/v/jsonwebtoken?label=jsonwebtoken&color=blue)
+![mongoose](https://img.shields.io/npm/v/mongoose?label=mongoose&color=blue)
+![nodemailer](https://img.shields.io/npm/v/nodemailer?label=nodemailer&color=blue)
+![otp-generator](https://img.shields.io/npm/v/otp-generator?label=otp-generator&color=blue)
+
+
 
 
 # installation
