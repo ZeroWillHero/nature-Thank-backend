@@ -34,5 +34,9 @@ $ npm install
 ### Basic user Routes 
 #### Get Users
 ```
-http://localhost:4000/api/V1
+http://localhost:4000/api/V1/
+```
+### Get single user 
+```
+http://localhost:4000/api/V1/
 ```
