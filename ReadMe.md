@@ -3,6 +3,10 @@
 ## overview 
 Nature thank is a project that with following things 
 
+#### packages 
+![bcrypt](https://img.shields.io/npm/v/bcrypt?label=bcrypt&color=blue)
+
+
 # installation
 1. install node js on your computer 
 2. clone the git repo on your local computer 
