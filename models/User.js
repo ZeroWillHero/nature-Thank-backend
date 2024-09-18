@@ -5,7 +5,8 @@ const Schema =  mongoose.Schema();
 
 const userSchema = new mongoose.Schema({
     firstname : {
-        type : String
+        type : String,
+        required : true
     },
 
     profile_iamge : {
@@ -16,6 +17,7 @@ const userSchema = new mongoose.Schema({
     lastname : {
         type : String,
         required : true
+
     },
 
     email : {
