@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 
 const sendMail = async (email, subject, token) => {
+
     try {
         const transporter = nodemailer.createTransport({
             service: process.env.EMAIL_SERVICE,
@@ -74,7 +75,7 @@ const sendMail = async (email, subject, token) => {
 
             </style>
             <h1>Reset Password</h1>
-            <a href="${process.env.HOST}/api/user/resetpassword/${token}"><button class="button">Reset</button></a>
+            <a href="${process.env.HOST}/api/user/changepassword/${token}"><button class="button">Reset</button></a>
         </body>
         
             `
