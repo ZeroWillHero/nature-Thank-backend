@@ -1,3 +1,4 @@
+
 const nodemailer = require('nodemailer');
 
 const sendMail = async (email, subject, token) => {
@@ -76,9 +77,103 @@ const sendMail = async (email, subject, token) => {
             </style>
             <h1>Reset Password</h1>
             <a href="${process.env.HOST}/api/user/changepassword/${token}"><button class="button">Reset</button></a>
-        </body>
-        
-            `
+        </body>`
+        }
+
+        if (subject === "adminReg") {
+            htmlContent = `<style>
+    * {
+        padding:0;
+        margin:0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h1{
+        text-align: center;
+        color: black;
+        margin-top: 20px;
+    }
+
+    .main-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wrapper {
+        width: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    input{
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button{
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .success{
+        background-color: green;
+    }
+    .danger{
+        background-color: red;
+    }
+
+
+    
+</style>
+<body>
+    <div class="main-wrapper">
+        <div>
+            <h1>Confirm admin</h1>
+            <div class="wrapper">
+                <p>Name : <span>Chameera</span></p>
+                <p>email : <span>chameerasandakelum69@gmail.com</span></p>
+                <p>role : <span>admin</span></p>
+
+                <p>You can confirm this admin user for your website</p>
+                <button class="success">Confirm  &#10004;</button>
+                <button class="danger">Decline  &#10006;</button>
+            </div>
+        </div>
+    </div>
+</body>
+`
+
+            if (htmlContent === "admin") {
+                htmlContent = `
+                <body>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        p{
+            font-size: 20px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+    <p>Your admin request is sent to our super admin <br/> after confirming your request you can access your account </p>
+</body>
+                `
+            }
         }
 
         console.log(htmlContent); // Log the HTML content
