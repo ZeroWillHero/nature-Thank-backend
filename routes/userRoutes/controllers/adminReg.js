@@ -25,9 +25,8 @@ const regAdmin = async (req,res) => {
 
         // create token for the super user to confirm the new admin user
         const token = jwt.sign({email},process.env.JWT_SECRET,{expiresIn: '1d'});
-        const subject = 'Confirm admin';
         // send email to super user 
-        await sendMail(process.env.EMAIL_ADDRESS,subject,token);
+        await sendMail(process.env.EMAIL_ADDRESS,'adminReg',token);
         // send email to new admin user 
         await sendMail(email,'admin',null);
         // save the above user to the database
