@@ -26,15 +26,15 @@ const regAdmin = async (req,res) => {
         // create token for the super user to confirm the new admin user
         const token = jwt.sign({email},process.env.JWT_SECRET,{expiresIn: '1d'});
         // send email to super user 
-        await sendMail(process.env.EMAIL_ADDRESS,'adminReg',token);
+        await sendMail(process.env.EMAIL_ADDRESS,'adminReg',token,newUser);
         // send email to new admin user 
-        await sendMail(email,'admin',null);
+        await sendMail(email,'admin',token,newUser);
         // save the above user to the database
         await newUser.save();
-        res.status(200).json({message: 'We are processing your request'});
+        res.status(200).json({message: 'We are processing your request', token});
     }catch(error){
         console.log(error);
-        res.status(500).json({message: 'Server Error'});
+        res.status(500).json({message: error});
     }
 }
 
