@@ -46,13 +46,13 @@
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background-color: #007bff;
+            background-color: rgb(0, 128, 58);
             color: white;
             cursor: pointer;
         }
 
         button:hover{
-            background-color: #0056b3;
+            background-color: #00b345;
         }
 
         form {
@@ -64,8 +64,11 @@
         <h1>Admin Sign-up</h1>
 
         <form action="">
-            <label for="name">Name</label> <br>
-            <input type="text" name="name" id="name" required>
+            <label for="name">First Name</label> <br>
+            <input type="text" name="name" id="first" required>
+            <br>
+            <label for="name">Last Name</label> <br>
+            <input type="text" name="name" id="last" required>
             <br>
             <label for="email">Email</label> <br>
             <input type="email" name="email" id="email" required>
@@ -81,7 +84,27 @@
     </div>
 
     <script>
+        // get all values from the form 
+       
 
+        console.log(process.env.API_URL);
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const firstName = document.getElementById('first').value;
+            const lastName = document.getElementById('last').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // check if password and confirm password are the same
+            if (password !== confirmPassword){
+                alert("[please make sure that password and confirm password are the same]");
+            }
+            
+            // send data to the serever via api 
+            
+        });
     </script>
 
 </body>
