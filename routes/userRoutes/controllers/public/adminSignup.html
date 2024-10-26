@@ -21,15 +21,15 @@
             margin-top: 20px;
         }
 
-        .wrapper{
-            display:flex;
+        .wrapper {
+            display: flex;
             flex-direction: column;
-            justify-content:center;
-            align-items:center;
-            height:100vh;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        input{
+        input {
             margin: 10px 0;
             padding: 10px;
             width: 300px;
@@ -42,7 +42,7 @@
             font-weight: 700;
         }
 
-        button{
+        button {
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -51,7 +51,7 @@
             cursor: pointer;
         }
 
-        button:hover{
+        button:hover {
             background-color: #00b345;
         }
 
@@ -64,11 +64,11 @@
         <h1>Admin Sign-up</h1>
 
         <form action="">
-            <label for="name">First Name</label> <br>
-            <input type="text" name="name" id="first" required>
+            <label for="first">First Name</label> <br>
+            <input type="text" name="first" id="first" required>
             <br>
-            <label for="name">Last Name</label> <br>
-            <input type="text" name="name" id="last" required>
+            <label for="last">Last Name</label> <br>
+            <input type="text" name="last" id="last" required>
             <br>
             <label for="email">Email</label> <br>
             <input type="email" name="email" id="email" required>
@@ -84,26 +84,52 @@
     </div>
 
     <script>
-        // get all values from the form 
-       
-
-        console.log(process.env.API_URL);
-        document.querySelector('form').addEventListener('submit', function(event) {
+        // Function to submit form data
+        const submitData = (firstName, lastName, email, password) => {
+            console.log('Submitting data:', { firstName, lastName, email, password });
+            fetch(`http://localhost:4000/api/user/admin/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    firstname : firstName,
+                    lastname : lastName,
+                    email,
+                    password
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response received:', data);
+                    if (data.status === 'success') {
+                        alert('Admin created successfully');
+                        window.location.href = '/admin/login';
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.log('Error:', error);
+                });
+        }
+    
+        document.querySelector('form').addEventListener('submit', function (event) {
             event.preventDefault();
-            
             const firstName = document.getElementById('first').value;
             const lastName = document.getElementById('last').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-
-            // check if password and confirm password are the same
-            if (password !== confirmPassword){
-                alert("[please make sure that password and confirm password are the same]");
+    
+            // Check if password and confirm password are the same
+            if (password !== confirmPassword) {
+                alert("Please make sure that password and confirm password are the same");
+                return; // Prevent form submission
             }
-            
-            // send data to the serever via api 
-            
+
+            console.log({ firstName, lastName, email, password });
+            submitData(firstName, lastName, email, password);
         });
     </script>
 
