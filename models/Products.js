@@ -39,14 +39,30 @@ const productSchema = new Schema({
         enum: ['oil', 'solid']
     },
 
-    weight : {
+    amount : {
         type: Number,
     },
 
     keyWords: {
         type: Array,
         required: true 
+    },
+
+    stock: {
+        type: Number,
+        required: true
+    },
+
+    rating : {
+        type: Array,
+        default: []
     }
+
+    // type : {
+    //     type: String,
+    //     required: true,
+    //     enum: ['liquid ', 'powder','other']
+    // }
 });
 
 const Product = mongoose.model('Product', productSchema);
