@@ -56,6 +56,12 @@ const productSchema = new Schema({
     rating: {
         type: Array,
         default: []
+    },
+
+    user : {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required:true
     }
 
     // type : {
