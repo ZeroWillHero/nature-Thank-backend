@@ -7,6 +7,7 @@ const addProduct = async (req, res) => {
         let images = [];
         try {
             images = req.files.map((file) => file.path);
+
         } catch (error) {
             return res.status(500).send({ error });
         }
