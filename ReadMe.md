@@ -11,6 +11,7 @@ Nature thank is a project that with following things
 ![mongoose](https://img.shields.io/npm/v/mongoose?label=mongoose&color=blue)
 ![nodemailer](https://img.shields.io/npm/v/nodemailer?label=nodemailer&color=blue)
 ![otp-generator](https://img.shields.io/npm/v/otp-generator?label=otp-generator&color=blue)
+![cors](https://img.shields.io/npm/v/cors?label=cors&color=blue)
 
 
 
@@ -145,5 +146,32 @@ localhost:4000/api/user/forgetpassword
 }
 ```
 
-then you can reset your password via loading pages 
+then you can reset your password via loading pages
+
+## Admin Routes 
+# Register Admin 
+
+API link 
+
+```
+localhost:4000/api/user/admin/register
+ ```
+
+### Request body 
+```json
+{
+    "firstname" : "chameera",
+    "lastname" : "sandakelum",
+    "email" : "ict21018@std.uwu.ac.lk",
+    "password" : "Chami@1234"
+
+}
+```
+once you register as an admin, super admin should accept your admin request 
+It is sent to the email that include in env as follows 
+
+```.env
+EMAIL_ADDRESS=chameerasandakelum69@gmail.com
+```
+
 
