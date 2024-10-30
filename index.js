@@ -16,7 +16,7 @@ app.use(express.json());
 
 // testing middlewares 
 app.use((req,res,next) => {
-    console.log(`Method :) ${req.method} URL :) ${req.url} , Body : ${req.body.email}`);next();
+    console.log(`Method :) ${req.method} URL :) ${req.url} , Body : ${req.body} , headers : ${req.headers.authorization}`);next();
 });
 
 app.use(cors());
