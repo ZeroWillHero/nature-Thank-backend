@@ -1,29 +1,30 @@
 const jwt = require('jsonwebtoken');
 const User = require('./../models/User');
 
-const adminAuth = async (req,res,next) => {
-    const token = req.header('Authorization');
-    if (!token){
-        return res.status(401).send({error: 'Access Denied'});
+const adminAuth = async (req, res, next) => {
+    const authHeader = req.header('Authorization');
+    const token = authHeader.split(' ')[1];
+    console.log(jwt.verify(token, process.env.JWT_SECRET));
+    if (!authHeader) {
+        return res.status(401).send({ error: 'Access Denied: No token provided' });
     }
 
-    try {
-        const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-        const user = await User.findOne({_id: verified._id});
-        if (!user){
-            return res.status(401).send({error: 'Access Denied'});
-        }
-
-        if (user.role !== 'admin'){
-            return res.status(401).send({error: 'Access Denied'});
-        }
-
-        next();
-    
-
-    }catch(error){
-        return res.status(400).send({error: error});
+    if (!token) {
+        return res.status(401).send({ error: 'Access Denied: Malformed token' });
     }
-}
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findOne({ email : verified.email });
+    if (!user) {
+        return res.status(401).send({ error: 'Access Denied: User not found' });
+    }
+
+    if (user.role !== 'admin') {
+        return res.status(403).send({ error: 'Access Denied: Insufficient permissions' });
+    }
+
+    next();
+
+};
 
 module.exports = adminAuth;
