@@ -1,9 +1,9 @@
-# Nature Thank PVT LTD - REST API 
+# Nature Thank PVT LTD - REST API
 
-## overview 
-Nature thank is a project that with following things 
+## Overview
+Nature Thank is a project that includes the following features:
 
-#### packages 
+### Packages
 ![bcrypt](https://img.shields.io/npm/v/bcrypt?label=bcrypt&color=blue)
 ![dotenv](https://img.shields.io/npm/v/dotenv?label=dotenv&color=blue)
 ![express](https://img.shields.io/npm/v/express?label=express&color=blue)
@@ -13,19 +13,16 @@ Nature thank is a project that with following things
 ![otp-generator](https://img.shields.io/npm/v/otp-generator?label=otp-generator&color=blue)
 ![cors](https://img.shields.io/npm/v/cors?label=cors&color=blue)
 
-
-
-
-# installation
-1. install node js on your computer 
-2. clone the git repo on your local computer 
-3. run follwing command to install dependancies 
-```bash
-$ npm install
-```
-4. setup .env
-   setup your dotenv file and copy paste as follows 
-```
+## Installation
+1. Install Node.js on your computer.
+2. Clone the Git repository on your local computer.
+3. Run the following command to install dependencies:
+    ```bash
+    npm install
+    ```
+4. Set up `.env`:
+    Set up your dotenv file and copy-paste the following:
+    ```plaintext
     PORT=4000
     MONGO_URI=mongodb://localhost:27017/userDB
     JWT_SECRET=@35fYTRgfgrEFre
@@ -36,32 +33,29 @@ $ npm install
     EMAIL_PASSWORD=kgcnurehfmhsmxcb
 
     HOST=http://localhost:4000
+    ```
+5. Run the project:
+    ```bash
+    npm run dev
+    ```
 
-```
-
-5. run project 
-    $ npm run dev 
-
-
-## User Routes 
-### Basic user Routes 
+## User Routes
+### Basic User Routes
 #### Get Users
-```
-http://localhost:4000/api/users
-```
-### Get single user 
-```
-http://localhost:4000/api/user/{id}
+```http
+GET http://localhost:4000/api/users
 ```
 
-### Register a User 
-
+#### Get Single User
+```http
+GET http://localhost:4000/api/user/{id}
 ```
-http://localhost:4000/api/user/register
 
+#### Register a User
+```http
+POST http://localhost:4000/api/user/register
 ```
-#### your body should have as follow 
-
+##### Request Body
 ```json
 {
     "firstname": "chameera",
@@ -69,16 +63,14 @@ http://localhost:4000/api/user/register
     "email": "ict21018@std.uwu.ac.lk",
     "password": "Chami@1234"
 }
-
 ```
-
-#### Resposnse 
+##### Response
 ```json
-    {
+{
     "message": "User created successfully",
     "user": {
         "firstname": "chameera",
-        "profile_iamge": "default.jpg",
+        "profile_image": "default.jpg",
         "lastname": "Sandakelum",
         "email": "ict21018@std.uwu.ac.lk",
         "password": "$2b$10$rqmV.rKnHYfsM7/jNOSaeev94atLA6hf/pWKt01/u4Up.yE8ma0hq",
@@ -90,16 +82,13 @@ http://localhost:4000/api/user/register
 }
 ```
 
-### Log in as user 
-
+#### Log in as User
+```http
+POST http://localhost:4000/api/user/login
 ```
-localhost:4000/api/user/login
-```
-
-#### Response 
-
-``` json
-    {
+##### Response
+```json
+{
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWE1MWZjYTk0NTk5ZWNjYzFjYjkzMSIsImlhdCI6MTcyNjYzMjc4MiwiZXhwIjoxNzI2NzE5MTgyfQ.XXN8d9KkcHOtXBK5Lnm626NXljbUn5sRrsgGwei3VhQ",
     "user": {
         "id": "66ea51fca94599eccc1cb931",
@@ -110,68 +99,79 @@ localhost:4000/api/user/login
 }
 ```
 
-### Verify a user 
+#### Verify a User
+After you register as a user, you should confirm it. An email verification will be sent to your email.
 
-after you register as a user you should confirm it.
-Email verification will send to your email
-
-In here end point may be 
-
+Endpoint:
+```http
+GET http://localhost:4000/api/user/verify/:token
 ```
-localhost:4000/api/user/verify/:token
+This will be automatically called by the API itself when you click confirm in the email verification.
+
+#### Forget Password
+Call this endpoint to get the resetting link to your email:
+```http
+POST http://localhost:4000/api/user/forgetpassword
 ```
-
-this will automatically call by the API itself when you click confirm in the email verification 
-
-
-### forget password 
-
-call to here and you can get the resetting link to your email
-```
-localhost:4000/api/user/forgetpassword
-```
-
-#### Request body 
-
+##### Request Body
 ```json
 {
-    "email" : "ict21018@std.uwu.ac.lk"
+    "email": "ict21018@std.uwu.ac.lk"
 }
 ```
-
-#### Response 
+##### Response
 ```json
 {
     "message": "Email sent"
 }
 ```
+Then you can reset your password via the provided link.
 
-then you can reset your password via loading pages
-
-## Admin Routes 
-# Register Admin 
-
-API link 
-
+## Admin Routes
+### Register Admin
+```http
+POST http://localhost:4000/api/user/admin/register
 ```
-localhost:4000/api/user/admin/register
- ```
-
-### Request body 
+##### Request Body
 ```json
 {
-    "firstname" : "chameera",
-    "lastname" : "sandakelum",
-    "email" : "ict21018@std.uwu.ac.lk",
-    "password" : "Chami@1234"
-
+    "firstname": "chameera",
+    "lastname": "sandakelum",
+    "email": "ict21018@std.uwu.ac.lk",
+    "password": "Chami@1234"
 }
 ```
-once you register as an admin, super admin should accept your admin request 
-It is sent to the email that include in env as follows 
-
-```.env
+Once you register as an admin, a super admin should accept your admin request. It is sent to the email included in the `.env` file as follows:
+```plaintext
 EMAIL_ADDRESS=chameerasandakelum69@gmail.com
 ```
 
+## Product Routes
+### Add Product
+```http
+POST http://localhost:4000/api/products/add
+```
+##### Request Body
+```json
+{
+    "title": "Sample Product",
+    "price": 29.99,
+    "description": "This is a sample product description.",
+    "category": "Electronics",
+    "stock": 100,
+    "weight": 1.5,
+    "sub_category": "Gadgets",
+    "state": "solid",
+    "images": [
+        "path/to/image1.jpg",
+        "path/to/image2.jpg"
+    ]
+}
+```
+> **Warning:** Authorization headers must be included for this endpoint.
 
+### Get Product and Get All Products
+#### Get a Specific Product
+```http
+GET http://localhost:4000/api/products/get
+```
