@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 const User = require('./../models/User');
 
 const adminAuth = async (req, res, next) => {
-    const authHeader = req.header('Authorization');
+    try {
+        const authHeader = req.header('Authorization');
     const token = authHeader.split(' ')[1];
     if (!authHeader) {
         return res.status(401).send({ error: 'Access Denied: No token provided' });
@@ -23,6 +24,9 @@ const adminAuth = async (req, res, next) => {
     }
 
     next();
+    }catch(error){
+        res.status(500).send({ error: error.message });
+    }
 
 };
 
