@@ -8,6 +8,7 @@ const deleteProduct = require('./controllers/deleteProduct');
 const adminAuth = require('./../../middlewares/adminAuth');
 
 
+
 router.post('/add', uploadImages.array('images', 10),adminAuth,addProduct);
 router.get('/get',getProducts);
 router.get('/get/:id',getProduct);
