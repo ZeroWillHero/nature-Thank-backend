@@ -175,3 +175,104 @@ POST http://localhost:4000/api/products/add
 ```http
 GET http://localhost:4000/api/products/get
 ```
+
+#### Get a all Products
+
+```http
+GET http://localhost:4000/api/products/get/{id}
+
+```
+#### Update a product
+
+```http
+
+PATCH http://localhost:4000/api/products/get/{id}
+
+```
+
+##### Request Body
+```json
+{
+    "title": "Sample Product",
+    "price": 29.99,
+    "description": "This is a sample product description.",
+    "category": "Electronics",
+    "stock": 100,
+    "weight": 1.5,
+    "sub_category": "Gadgets",
+    "state": "solid",
+    "images": [
+        "path/to/image1.jpg",
+        "path/to/image2.jpg"
+    ]
+}
+```
+#### Delete a product
+
+```http
+
+DELETE http://localhost:4000/api/products/delete/{id}
+
+```
+## Cart Routes 
+
+#### Add to cart 
+
+```http
+
+POST http://localhost:4000/api/cart/add
+
+```
+##### Request Body
+
+```json
+
+{
+  "product": "Your product id",
+  "user": "your user id ",
+  "quantity": 3
+}
+
+```
+#### get all carts 
+
+```http
+
+GET http://localhost:4000/api/cart/get
+
+```
+
+#### get Specific cart 
+
+```http
+
+GET http://localhost:4000/api/cart/get/{id}
+
+```
+
+#### update an item from the cart 
+
+```http
+PATCH http://localhost:4000/api/cart/delete/{id}
+
+```
+
+##### Request Body
+
+```json
+
+{
+  
+  "quantity": 3
+}
+
+```
+
+for quantity please enter your quantity
+
+
+
+
+ 
+
+
