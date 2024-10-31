@@ -6,7 +6,7 @@ const cors = require('cors');
 // import routes 
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/products/product.routes');
-
+const cartRoutes = require('./routes/cart/cart.routes');
 
 // connect to database 
 require('./database/connection');
@@ -16,7 +16,7 @@ app.use(express.json());
 
 // testing middlewares 
 app.use((req,res,next) => {
-    console.log(`Method :) ${req.method} URL :) ${req.url} , Body : ${req.body.email}`);next();
+    console.log(`Method :) ${req.method} URL :) ${req.url} , Body : ${req.body} , headers : ${req.headers.authorization}`);next();
 });
 
 app.use(cors());
@@ -25,6 +25,7 @@ app.use(cors());
 // Routes 
 app.use('/api/user', userRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
