@@ -146,6 +146,22 @@ Once you register as an admin, a super admin should accept your admin request. I
 EMAIL_ADDRESS=chameerasandakelum69@gmail.com
 ```
 
+#### Resend the confirmation email
+
+if you have get trouble to confirm you can resend confirmation email for your mail by  calling to this end point 
+
+``` http
+POST http://localhost:4000/api/user/resend
+```
+
+##### Request Body
+``` json
+{
+    "email" : "Youremail@.com"
+}
+```
+
+
 ## Product Routes
 ### Add Product
 ```http
