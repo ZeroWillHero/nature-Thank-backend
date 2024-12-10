@@ -5,8 +5,11 @@ const updateUser = async (req, res) => {
         const { id } = req.params;
         let updates = req.body;
 
-        
-        
+        if (req.files) {
+            const image = req.files.path;
+        }
+
+
         const user = await User.findByIdAndUpdate(id, updates, { new: true });
 
         if (!user) {
