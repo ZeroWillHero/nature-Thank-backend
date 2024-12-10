@@ -7,6 +7,7 @@ const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/products/product.routes');
 const cartRoutes = require('./routes/cart/cart.routes');
+const orderRoutes = require('./routes/order/order.routes');
 
 // connect to database 
 require('./database/connection');
@@ -26,6 +27,7 @@ app.use(cors());
 app.use('/api/user', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/order', orderRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
