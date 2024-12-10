@@ -13,7 +13,6 @@ const createOrder = async (req, res) => {
 
     const total = itemTotal;
 
-    console.log(itemTotal);
     
     const newOrder = new Order({
         items,
@@ -22,6 +21,8 @@ const createOrder = async (req, res) => {
     });
     try {
         await newOrder.save();
+        // Delete items from the cart 
+        await Cart.deleteMany({ user: user });
         res.status(201).json(newOrder);
     } catch (error) {
         res.status(400).json({ message: error.message });
